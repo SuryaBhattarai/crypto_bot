@@ -4,8 +4,9 @@ import pandas as pd
 import psycopg2
 from datetime import datetime
 
-API_KEY = 'e3mAo1MdRxhM8XGY3q4ARM1D1VZI7oW5Lj199bEYKsLuEnS2dkKU4Rkr0q9AdPIV'
-API_SECRET = 'cCrg8eyoBG2V85HX1dd7MQ5Xb3ZocbGiwbTHPl3E9ipq2Bz3ihA7YCmpXLBS3aCR'
+# add API and secret key
+API_KEY = '*************'
+API_SECRET = '***********'
 
 client = Client(API_KEY, API_SECRET)
 
