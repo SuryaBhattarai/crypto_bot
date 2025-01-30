@@ -142,9 +142,10 @@ This script, located in the scripts folder, is designed for loading and manipula
 
 Usage:
 To load and interact with the data in the JSON file:
+
 ```python
 from pathlib import Path
-from src.scripts.load_json_to_dataframe import load_json_to_dataframe
+from services.binance_data_loader.src.scripts.load_json_to_dataframe import load_json_to_dataframe
 
 # Specify the path to the JSON file
 file_path = Path("sample_data/LINKUSDT_1h.json")

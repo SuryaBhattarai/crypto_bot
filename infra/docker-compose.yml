@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  timescaledb-primary:
+    image: timescale/timescaledb-ha:pg16
+    container_name: timescaledb-primary
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=user
+      - POSTGRES_DB=opa
+      - TIMESCALEDB_TELEMETRY=off
+      - PG_MODE=primary
+      - CLUSTER_NAME=my_pg_cluster
+      - REPLICA_USER=repl_user
+      - REPLICA_PASSWORD=repl_password
+      - SHARED_PRELOAD_LIBRARIES=timescaledb
+    ports:
+      - "5432:5432"
+    volumes:
+      - primary_data:/home/postgres/pgdata/data
+      - ./postgres/timescale_init.sql:/docker-entrypoint-initdb.d/timescale_init.sql
+    networks:
+      - crypto_bot_network
+
+  timescaledb-replica:
+    image: timescale/timescaledb-ha:pg16
+    container_name: timescaledb-replica
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=user
+      - POSTGRES_DB=opa
+      - TIMESCALEDB_TELEMETRY=off
+      - PG_MODE=replica
+      - CLUSTER_NAME=my_pg_cluster
+      - PRIMARY_HOST=timescaledb-primary
+      - PRIMARY_PORT=5432
+      - REPLICA_USER=repl_user
+      - REPLICA_PASSWORD=repl_password
+      - SHARED_PRELOAD_LIBRARIES=timescaledb
+    depends_on:
+      - timescaledb-primary
+    ports:
+      - "5433:5432"
+    volumes:
+      - replica_data:/home/postgres/pgdata/data
+    networks:
+      - crypto_bot_network
+
+volumes:
+  primary_data:
+  replica_data:
+
+networks:
+  crypto_bot_network:
+    external: true
+    name: shared_crypto_bot_network
+

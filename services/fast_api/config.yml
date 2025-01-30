@@ -1,0 +1,13 @@
+binance:
+  api_key: "641YxNc0JKXA5anV4NJPxxobETnhmX2TfjQoRi6qD0f3BBcMAMgehi9bB1HxX62R"
+  api_secret: "wA5Pnk4TreFLO5zUMHMNOcr4jI1pUIYrfVYL92i2btJwJLndUcuAX11ZzDn97OAu"
+
+log:
+  path: "/app/logs"
+
+postgres:
+  host: localhost
+  port: "5432"
+  dbname: opa
+  user: user
+  password: password

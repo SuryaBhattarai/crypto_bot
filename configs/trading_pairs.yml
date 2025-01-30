@@ -1,0 +1,4 @@
+trading_pairs:
+  - symbol: "LINKUSDT"
+    interval: "1d"
+    start_date: "1 January, 2020"

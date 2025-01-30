@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  binance_data_loader:
+    build:
+      context: ./services/binance_data_loader
+      dockerfile: Dockerfile
+    container_name: binance_data_loader
+    volumes:
+      - ./configs/config.yml:/app/config.yml:ro
+      - ./configs/trading_pairs.yml:/app/trading_pairs.yml:ro
+      - ./logs:/app/logs:rw
+    networks:
+      - crypto_bot_network
+
+  fastapi_server:
+    build:
+      context: ./services/fast_api
+      dockerfile: Dockerfile
+    container_name: fastapi_server
+    volumes:
+      - ./configs/config.yml:/app/config.yml:ro
+      - ./logs/crypto_bot.log:/app/logs/crypto_bot.log:rw
+      - ./ml_models:/app/ml_models:ro
+    ports:
+      - "8000:8000"
+    networks:
+      - crypto_bot_network
+    restart: always
+
+networks:
+  crypto_bot_network:
+    external: true
+    name: shared_crypto_bot_network

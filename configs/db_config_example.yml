@@ -1,0 +1,14 @@
+binance:
+  api_key: "e3mAo1MdRxhM8XGY3q4ARM1D1VZI7oW5Lj199bEYKsLuEnS2dkKU4Rkr0q9AdPIV"
+  api_secret: "cCrg8eyoBG2V85HX1dd7MQ5Xb3ZocbGiwbTHPl3E9ipq2Bz3ihA7YCmpXLBS3aCR"
+
+
+log:
+  path: "logs/"
+
+postgres:
+  host: timescaledb-primary
+  port: "5432"
+  dbname: opa
+  user: user
+  password: password
